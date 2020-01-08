@@ -6,13 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import co.micol.dto.jobDto;  //패키지가다르므로 임포트 시켜줌
+import co.micol.dto.jobDto; //패키지가다르므로 임포트 시켜줌
 
 public class DAO {
-	private Connection conn;
-	private PreparedStatement psmt;
-	private ResultSet rs; // select 구문 결과값받기위해
-
+	public Connection conn;
+//	private PreparedStatement psmt;
+//	private ResultSet rs; // select 구문 결과값받기위해
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	private String user = "hr";
@@ -56,4 +55,4 @@ public class DAO {
 //				e.printStackTrace();
 //			}
 //		}
-	}
+}
