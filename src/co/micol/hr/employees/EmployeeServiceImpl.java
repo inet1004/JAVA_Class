@@ -12,6 +12,7 @@ public class EmployeeServiceImpl extends DAO implements EmployeeService {
 	private ResultSet rs;
 	private List<EmployeeDto> list;
 	private final String All_SELECT = "select * from employees";
+	private final String EMP_INSERT="insert into employees values (?,?,?,?,?,?,?,?,?,?,?)";
 
 	public List<EmployeeDto> allSelect() throws SQLException {
 		EmployeeDto dto;
@@ -27,7 +28,7 @@ public class EmployeeServiceImpl extends DAO implements EmployeeService {
 			dto.setPhone_number(rs.getString("phone_number"));
 			dto.setHire_date(rs.getDate("hire_date"));
 			dto.setJob_id(rs.getString("job_id"));
-			dto.setSalary(rs.getInt("salary"));
+			dto.setSalary(rs.getFloat("salary"));
 			dto.setCommission_pct(rs.getFloat("commission_pct"));
 			dto.setManager_id(rs.getInt("manager_id"));
 			dto.setDepartment_id(rs.getInt("department_id"));
@@ -44,8 +45,22 @@ public class EmployeeServiceImpl extends DAO implements EmployeeService {
 
 	@Override
 	public int insert(EmployeeDto dto) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		psmt=conn.prepareStatement(EMP_INSERT);
+		psmt.setInt(1,dto.getEmployee_id());
+		psmt.setString(2,dto.getFirst_name());
+		psmt.setString(3,dto.getLast_name());
+		psmt.setString(4,dto.getEmail());
+		psmt.setString(5,dto.getPhone_number());
+		psmt.setDate(6,dto.getHire_date());
+		psmt.setString(7,dto.getJob_id());
+		psmt.setFloat(8,dto.getSalary());
+		psmt.setFloat(9,dto.getCommission_pct());
+		psmt.setInt(10,dto.getManager_id());
+		psmt.setInt(11,dto.getDepartment_id());
+		
+		
+		int n=psmt.executeUpdate();
+		return n;
 	}
 
 	@Override
